@@ -3,7 +3,7 @@
 	[
     		{"name":"Sun", "distance":0, "size": 696, "material": "Sun_Material"},
     		{"name":"Mercury", "distance":630, "size": 2.4, "material": "Mercury_Material"},
-    		{"name":"Venus", "distance":1070, "size": 6, "material": "Venus_Material"},
+    		{"name":"Venus", "distance":1070, "size": 6, "material": "Venus_Atmosphere_Material"},
     		{"name":"Terre", "distance":1510, "size": 6.3, "material": "Terre_Material"},
     		{"name":"Mars", "distance":2480, "size": 3.3, "material": "Mars_Material"},
     		{"name":"Jupiter", "distance":7550, "size": 69.9, "material": "Jupiter_Material"},

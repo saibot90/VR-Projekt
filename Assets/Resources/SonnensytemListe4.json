@@ -1,0 +1,12 @@
+{
+	"planetlist":
+	[
+    		{"name":"Mercury", "distance":630, "size": 2.4, "material": "Mercury_Material", "ring": "n"},
+    		{"name":"Venus", "distance":1070, "size": 6, "material": "Venus_Atmosphere_Material", "ring": "n"},
+    		{"name":"Mars", "distance":2480, "size": 3.3, "material": "Mars_Material", "ring": "n"},
+    		{"name":"Jupiter", "distance":7550, "size": 69.9, "material": "Jupiter_Material", "ring": "n"},
+    		{"name":"Saturn", "distance":14870, "size": 58.2, "material": "Saturn_Material", "ring": "y"},
+    		{"name":"Uranus", "distance":29540, "size": 25.3, "material": "Uranus_Material", "ring": "n"},
+    		{"name":"Neptune", "distance":44750, "size": 24.6, "material": "Neptune_Material", "ring": "n"}
+	]
+}

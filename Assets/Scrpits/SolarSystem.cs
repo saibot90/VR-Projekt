@@ -12,6 +12,7 @@ public class Planet
     public float distance;
     public float size;
     public string material;
+    public string ring;
     //public Planet(string name, int distance, float scale1, float scale2, float scale3, string material)
     //{
     //    name = name;
@@ -60,18 +61,36 @@ public class SolarSystem : MonoBehaviour
 
     void CreatePlanet(Planet planet)
     {
-        Material newMat = Resources.Load(planet.material, typeof(Material)) as Material;
+        string materialpath = "Planet_Materials/" + planet.name + "_Material";
+        Material newMat = Resources.Load(materialpath, typeof(Material)) as Material;
 
-        GameObject jupiter = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-        jupiter.gameObject.GetComponent<Renderer>().material = newMat;
-        jupiter.transform.position = new Vector3(planet.distance, 0, 0);
-        jupiter.transform.localScale = new Vector3(planet.size, planet.size, planet.size);
-        jupiter.name = planet.name;
-        jupiter.tag = "Celestial";
-        jupiter.AddComponent<Rigidbody>();
-        jupiter.GetComponent<Rigidbody>().useGravity = false;
-        jupiter.AddComponent<TrailRenderer>();
-        jupiter.GetComponent<TrailRenderer>().time = 100;
+        GameObject currentplanet = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+        currentplanet.gameObject.GetComponent<Renderer>().material = newMat;
+
+        currentplanet.transform.position = new Vector3(planet.distance, 0, 0);
+        currentplanet.transform.localScale = new Vector3(planet.size, planet.size, planet.size);
+        currentplanet.transform.parent = this.gameObject.transform;
+
+        currentplanet.name = planet.name;
+        currentplanet.tag = "Celestial";
+
+        currentplanet.AddComponent<Rigidbody>();
+        currentplanet.GetComponent<Rigidbody>().useGravity = false;
+        currentplanet.AddComponent<TrailRenderer>();
+        currentplanet.GetComponent<TrailRenderer>().time = 100;
+
+        if(planet.ring == "y")
+        {
+            materialpath = "Planet_Materials/" + planet.name + "_Ring_Material";
+            Material newMatRing = Resources.Load(materialpath, typeof(Material)) as Material;
+            GameObject planetRing = Resources.Load("PlanetRingPrefab") as GameObject;
+
+            planetRing.gameObject.GetComponent<Renderer>().material = newMatRing;
+            planetRing.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+            planetRing.name = planet.name + "_Ring";
+
+            Instantiate(planetRing, new Vector3(planet.distance, 0f, 0f), Quaternion.Euler(90, 0, 0), currentplanet.transform);
+        }
     }
 
     // Update is called once per frame
