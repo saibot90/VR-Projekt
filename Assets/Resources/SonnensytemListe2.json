@@ -1,0 +1,6 @@
+{"planetlist":
+[
+{"name":"Jupiter", "distance":7550, "size": 69.9, "material": "Jupiter_Material"},
+{"name":"Mars", "distance":4550, "size": 69.9, "material": "Jupiter_Material"}
+]
+}
