@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Text.Json;
 using System.IO;
-
+using TMPro;
 
 [System.Serializable]
 public class Planet
@@ -34,6 +33,7 @@ public class SolarSystem : MonoBehaviour
     GameObject[] celestials;
     //Planet[] planet =  new Planet[1];
     public string planetsytemname = "SonnensytemListe4.json";
+    public TextMeshProUGUI text;
     private float scaleSS = 0.01f;
 
 
@@ -54,6 +54,9 @@ public class SolarSystem : MonoBehaviour
             {
                 CreatePlanet(p);
             }
+        } else
+        {
+            text.text = "Cannot Read PlanetList";
         }
 
         celestials = GameObject.FindGameObjectsWithTag("Celestial");
