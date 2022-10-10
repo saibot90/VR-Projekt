@@ -11,7 +11,7 @@ public class Planet
     public string name;
     public float distance;
     public float size;
-    public string material;
+    public float mass;
     public string ring;
     //public Planet(string name, int distance, float scale1, float scale2, float scale3, string material)
     //{
@@ -33,7 +33,8 @@ public class SolarSystem : MonoBehaviour
     //readonly float G = 100000f;
     GameObject[] celestials;
     //Planet[] planet =  new Planet[1];
-    public string planetsytemname = "SonnensytemListe3.json";
+    public string planetsytemname = "SonnensytemListe4.json";
+    private float scaleSS = 0.01f;
 
 
 
@@ -56,6 +57,8 @@ public class SolarSystem : MonoBehaviour
         }
 
         celestials = GameObject.FindGameObjectsWithTag("Celestial");
+        this.transform.localScale = new Vector3(scaleSS, scaleSS, scaleSS);
+        this.transform.position = new Vector3(0, 0, 30);
         InitialVelocity();
     }
 
@@ -63,6 +66,8 @@ public class SolarSystem : MonoBehaviour
     {
         string materialpath = "Planet_Materials/" + planet.name + "_Material";
         Material newMat = Resources.Load(materialpath, typeof(Material)) as Material;
+        string trailMaterial = "TrailRenderer";
+        Material newTrailMat = Resources.Load(trailMaterial, typeof(Material)) as Material;
 
         GameObject currentplanet = GameObject.CreatePrimitive(PrimitiveType.Sphere);
         currentplanet.gameObject.GetComponent<Renderer>().material = newMat;
@@ -76,10 +81,14 @@ public class SolarSystem : MonoBehaviour
 
         currentplanet.AddComponent<Rigidbody>();
         currentplanet.GetComponent<Rigidbody>().useGravity = false;
+        currentplanet.GetComponent<Rigidbody>().mass = planet.mass;
         currentplanet.AddComponent<TrailRenderer>();
-        currentplanet.GetComponent<TrailRenderer>().time = 100;
+        currentplanet.GetComponent<TrailRenderer>().time = 1;
+        currentplanet.GetComponent<TrailRenderer>().material = newTrailMat;
+        currentplanet.GetComponent<TrailRenderer>().startWidth = scaleSS;
+        //currentplanet.GetComponent<TrailRenderer>().endWidth = scaleSS;
 
-        if(planet.ring == "y")
+        if (planet.ring == "y")
         {
             materialpath = "Planet_Materials/" + planet.name + "_Ring_Material";
             Material newMatRing = Resources.Load(materialpath, typeof(Material)) as Material;
@@ -88,6 +97,7 @@ public class SolarSystem : MonoBehaviour
             planetRing.gameObject.GetComponent<Renderer>().material = newMatRing;
             planetRing.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
             planetRing.name = planet.name + "_Ring";
+            planetRing.GetComponent<Rigidbody>().mass = planet.mass;
 
             Instantiate(planetRing, new Vector3(planet.distance, 0f, 0f), Quaternion.Euler(90, 0, 0), currentplanet.transform);
         }
@@ -101,7 +111,7 @@ public class SolarSystem : MonoBehaviour
     private void FixedUpdate()
     {
         Gravity();
-        PlanetRotation();
+        //PlanetRotation();
     }
 
     void Gravity()
@@ -117,6 +127,12 @@ public class SolarSystem : MonoBehaviour
                     float r = Vector3.Distance(a.transform.position, b.transform.position);
 
                     a.GetComponent<Rigidbody>().AddForce((b.transform.position - a.transform.position).normalized * (G * m1 * m2 / (r * r)));
+                    if (a.transform.childCount != 0)
+                    {
+                        Transform ring = a.transform.GetChild(0);
+                        ring.GetComponent<Rigidbody>().AddForce((b.transform.position - a.transform.position).normalized * (G * m1 * m2 / (r * r)));
+                        //ring.transform.position = a.transform.position;
+                    }
                 }
             }
         }
@@ -135,6 +151,11 @@ public class SolarSystem : MonoBehaviour
                     a.transform.LookAt(b.transform);
 
                     a.GetComponent<Rigidbody>().velocity += a.transform.right * Mathf.Sqrt((G * m2) / r);
+                    if (a.transform.childCount != 0)
+                    {
+                        Transform ring = a.transform.GetChild(0);
+                        ring.GetComponent<Rigidbody>().velocity += a.transform.right * Mathf.Sqrt((G * m2) / r);
+                    }
 
                     //a.GetComponent<Rigidbody>().velocity += a.transform.right * 240;
 
