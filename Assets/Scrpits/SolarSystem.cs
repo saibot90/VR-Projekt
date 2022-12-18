@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using TMPro;
+using UnityEngine.UI;
+using UnityEngine.XR.Interaction.Toolkit;
 
 [System.Serializable]
 public class Planet
@@ -33,10 +35,9 @@ public class SolarSystem : MonoBehaviour
     //readonly float G = 100000f;
     private GameObject[] celestials;
     //Planet[] planet =  new Planet[1];
-    [SerializeField]
-    private string planetsytemname = "SonnensytemListe4.json";
-    [SerializeField]
-    private TextMeshProUGUI text;
+    [SerializeField] private string planetsytemname = "SonnensytemListe4.json";
+    [SerializeField] private TextMeshProUGUI text;
+    [SerializeField] private Toggle toggleGravity;
     public static float scaleSS = 0.01f;
 
 
@@ -99,6 +100,9 @@ public class SolarSystem : MonoBehaviour
         currentplanet.GetComponent<TrailRenderer>().startWidth = scaleSS;
         //currentplanet.GetComponent<TrailRenderer>().endWidth = scaleSS;
 
+        currentplanet.AddComponent<XRGrabInteractable>();
+        currentplanet.GetComponent<XRGrabInteractable>().throwOnDetach = false;
+
         if (planet.ring == "y")
         {
             materialpath = "Planet_Materials/" + planet.name + "_Ring_Material";
@@ -127,6 +131,11 @@ public class SolarSystem : MonoBehaviour
 
     void Gravity()
     {
+        if (toggleGravity.isOn)
+        {
+            return;
+        }
+
         foreach (GameObject a in celestials)
         {
             foreach (GameObject b in celestials)

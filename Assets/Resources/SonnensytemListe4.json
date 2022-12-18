@@ -1,12 +1,14 @@
 {
 	"planetlist":
 	[
-    		{"name":"Mercury", "distance":630, "size": 2.4, "mass": "0,055", "ring": "n"},
-    		{"name":"Venus", "distance":1070, "size": 6, "mass": "0,815", "ring": "n"},
-    		{"name":"Mars", "distance":2480, "size": 3.3, "mass": "0,107", "ring": "n"},
-    		{"name":"Jupiter", "distance":7550, "size": 69.9, "mass": "317,8", "ring": "n"},
-    		{"name":"Saturn", "distance":14870, "size": 58.2, "mass": "95,16", "ring": "y"},
-    		{"name":"Uranus", "distance":29540, "size": 25.3, "mass": "14,54", "ring": "n"},
-    		{"name":"Neptune", "distance":44750, "size": 24.6, "mass": "17,15", "ring": "n"}
+			{"name":"Sun", "distance":0, "size": 696.34, "mass": 333000, "ring": "n"},
+    		{"name":"Mercury", "distance":638.1, "size": 2.4, "mass": 0.055, "ring": "n"},
+    		{"name":"Venus", "distance":1075.9, "size": 6.052, "mass": 0.815, "ring": "n"},
+			{"name":"Terre", "distance":1514.8, "size": 6.371, "mass": 1, "ring": "n"},
+    		{"name":"Mars", "distance":2488.4, "size": 3.390, "mass": 0.107, "ring": "n"},
+    		{"name":"Jupiter", "distance":7559.1, "size": 69.911, "mass": 317.8, "ring": "n"},
+    		{"name":"Saturn", "distance":14878.0, "size": 58.232, "mass": 95.16, "ring": "y"},
+    		{"name":"Uranus", "distance":29546.0, "size": 25.362, "mass": 14.54, "ring": "n"},
+    		{"name":"Neptune", "distance":44755.0, "size": 24.662, "mass": 17.15, "ring": "n"}
 	]
 }
