@@ -28,13 +28,16 @@ public class Planets
 
 public class SolarSystem : MonoBehaviour
 {
-    public float G = 1f;
+    [SerializeField]
+    private float G = 1f;
     //readonly float G = 100000f;
-    GameObject[] celestials;
+    private GameObject[] celestials;
     //Planet[] planet =  new Planet[1];
-    public string planetsytemname = "SonnensytemListe4.json";
-    public TextMeshProUGUI text;
-    private float scaleSS = 0.01f;
+    [SerializeField]
+    private string planetsytemname = "SonnensytemListe4.json";
+    [SerializeField]
+    private TextMeshProUGUI text;
+    public static float scaleSS = 0.01f;
 
 
 
@@ -60,7 +63,12 @@ public class SolarSystem : MonoBehaviour
         }
 
         celestials = GameObject.FindGameObjectsWithTag("Celestial");
-        this.transform.localScale = new Vector3(scaleSS, scaleSS, scaleSS);
+        //this.transform.localScale = new Vector3(scaleSS, scaleSS, scaleSS);
+        foreach (GameObject planet in celestials)
+        {
+            planet.transform.localScale = new Vector3(planet.transform.localScale.x * scaleSS, planet.transform.localScale.y * scaleSS, planet.transform.localScale.z * scaleSS);
+            planet.transform.position = new Vector3(planet.transform.position.x * scaleSS, planet.transform.position.y * scaleSS, planet.transform.position.z * scaleSS);
+        }
         this.transform.position = new Vector3(0, 0, 30);
         InitialVelocity();
     }
@@ -109,7 +117,7 @@ public class SolarSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
     }
     private void FixedUpdate()
     {

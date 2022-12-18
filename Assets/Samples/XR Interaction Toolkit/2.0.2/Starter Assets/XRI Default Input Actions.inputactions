@@ -1073,6 +1073,85 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "GamePlay",
+            "id": "3e2b0731-8ceb-45e9-91ee-c7f391bf7acf",
+            "actions": [
+                {
+                    "name": "Toggle",
+                    "type": "Button",
+                    "id": "2a09e73f-343b-465a-95a3-e7da04f1ba92",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Color",
+                    "type": "Value",
+                    "id": "e15210d7-2c1f-4963-ba72-c4273c65c75c",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "ToggleMenu",
+                    "type": "Button",
+                    "id": "be3c1db2-84a5-4dd3-8e36-9a6bc64802c3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "b0bbb6a3-f567-404b-ac1d-1fd0ba72d012",
+                    "path": "<OpenVROculusTouchController>/primaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Toggle",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ecca2e47-72fb-4bda-a7d9-d571d28d0a08",
+                    "path": "<XRController>/primaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Toggle",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b54b6f2a-b6b5-4e5c-9bed-498989e138ae",
+                    "path": "<OpenVROculusTouchController>/trigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Color",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "907acc22-950e-43f2-936e-3fdd051dc183",
+                    "path": "<XRController>/menuButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ToggleMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [
